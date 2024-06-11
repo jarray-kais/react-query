@@ -2,6 +2,7 @@ import API from "../../Api/TodoApi.js";
 
 import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
+import TodoCompleted from "./TodoCompleted.jsx";
 
 export default function TodoList() {
   const { data: todos ,isError , isLoading , error , refetch , isFetching , dataUpdatedAt} = useQuery(["todos"],API.getAll , {
@@ -68,21 +69,22 @@ if (isError) {
                 <td>{todo.LongId}</td>
                 <td>{todo.title}</td>
                 <td>
-                  <span
-                    className={`badge bg-${
-                      todo.completed ? "success" : "danger"
-                    } rounded-5 border-1`}
-                  >
-                    &nbsp;
-                  </span>
+                <TodoCompleted completed = {todo.completed}/>
                 </td>
                 <td>
+                 <Link
+                    className={"btn btn-sm mx-1 btn-success rounded-1"}
+                    to={`todo/${todo.id}/show`}
+                  >
+                    show
+                  </Link>
                   <Link
                     className={"btn btn-sm mx-1 btn-primary rounded-1"}
                     to={`todo/${todo.id}/update`}
                   >
                     Update
                   </Link>
+                 
                   <button
                     data-id={todo.id}
                     className={"btn btn-sm mx-1 btn-danger rounded-1"}

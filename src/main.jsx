@@ -7,6 +7,7 @@ import TodoCreate from "./Components/Todo/TodoCreate.jsx";
 import TodoUpdate from "./Components/Todo/TodoUpdate.jsx";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import TodoShow from './Components/Todo/TodoShow.jsx';
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                     <Route index element={<TodoList/>}/>
                     <Route path={'/todo/create'} element={<TodoCreate/>}/>
                     <Route path={'/todo/:id/update/'} element={<TodoUpdate/>}/>
+                    <Route path={'/todo/:id/show/'} element={<TodoShow/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
