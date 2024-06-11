@@ -7,13 +7,18 @@ export default function TodoList() {
   const { data: todos ,isError , isLoading , error , refetch , isFetching} = useQuery(["todos"],API.getAll , {
     refetchOnWindowFocus : false,
     //refetchOnMount : true,
-    enabled : false,
+    //enabled : true,
     retry : 2 ,
    cacheTime :5000,
    staleTime : 3000,
    refetchOnReconnect: true,
    //refetchInterval : 3000
-    
+    onError : (err)=>{
+      console.log(err)
+    },
+    onSuccess : (data)=>{
+      console.log(data)
+    }
   });
  
 
@@ -51,7 +56,7 @@ if (isError) {
             </tr>
           </thead>
           <tbody>
-            {todos?.map((todo) => (
+            {todos?.data?.map((todo) => (
               <tr key={todo.id}>
                 <td>{todo.id}</td>
                 <td>{todo.title}</td>
