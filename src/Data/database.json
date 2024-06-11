@@ -1,0 +1,24 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "laravel",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "title": "React js",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "title": "angular",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "title": "react-query",
+      "completed": true
+    }
+  ]
+}
