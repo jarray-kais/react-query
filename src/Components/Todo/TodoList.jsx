@@ -11,13 +11,19 @@ export default function TodoList() {
     retry : 2 ,
    cacheTime :5000,
    staleTime : 3000,
-   refetchOnReconnect: true,
+   //refetchOnReconnect: true,
    //refetchInterval : 3000
     onError : (err)=>{
       console.log(err)
     },
     onSuccess : (data)=>{
-      console.log(data)
+      console.log({"onsuccess" :  data})
+    },
+    select : (data)=>{
+      console.log(data.data)
+      return data.data.map((todo)=>({
+        ...todo, LongId: String(todo.id).padStart(10 ,'0')
+      }))
     }
   });
  
@@ -57,9 +63,9 @@ if (isError) {
             </tr>
           </thead>
           <tbody>
-            {todos?.data?.map((todo) => (
+            {todos?.map((todo) => (
               <tr key={todo.id}>
-                <td>{todo.id}</td>
+                <td>{todo.LongId}</td>
                 <td>{todo.title}</td>
                 <td>
                   <span
