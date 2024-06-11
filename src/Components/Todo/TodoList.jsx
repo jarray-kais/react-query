@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 
 export default function TodoList() {
-  const { data: todos ,isError , isLoading , error , refetch , isFetching} = useQuery(["todos"],API.getAll , {
+  const { data: todos ,isError , isLoading , error , refetch , isFetching , dataUpdatedAt} = useQuery(["todos"],API.getAll , {
     refetchOnWindowFocus : false,
     //refetchOnMount : true,
     //enabled : true,
@@ -42,6 +42,7 @@ if (isError) {
   return (
     <>
 
+    Last updated : {new Date(dataUpdatedAt).toTimeString().substring(0 , 8)}
     <button disabled={isFetching} className="btn btn-primary" onClick={refetch}>refetch</button>
       <h2 className="text-primary">Todo List</h2>
       <hr />
